@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import HeroSection from "../components/HeroSection";
 import Footer from "../components/Footer";
 import "./globals.css";
 
@@ -11,8 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-900 text-white">
-        {children}        {/* Контент page.js */}
-        <Footer />        {/* Footer глобально */}
+        <Header />  
+        <HeroSection />
+        {children}     
+        <Footer />      
       </body>
     </html>
   );

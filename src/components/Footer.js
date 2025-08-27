@@ -7,7 +7,7 @@ import { Linkedin } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-gray-300 px-6 py-10 mt-12">
+        <footer className="bg-gray-900 text-gray-300 px-6 py-10 ">
             <div className="max-w-7xl mx-auto grid gap-8
                 grid-cols-1      
                 sm:grid-cols-2  
@@ -120,7 +120,7 @@ export default function Footer() {
 
             {/* Bottom line */}
             <div className="mt-6 sm:mt-10 border-t border-gray-700 pt-3 sm:pt-6 text-center text-sm">
-                © {new Date().getFullYear()} MyShop. All rights reserved.
+                © Copyright Rimel {new Date().getFullYear()}. All rights reserved
             </div>
 
         </footer>
