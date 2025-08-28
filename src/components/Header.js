@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 export default function Header() {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
+    const showIcons = pathname !== "/signup" && pathname !== "/login";
 
     const links = [
         { href: "/", label: "Home" },
@@ -57,14 +58,16 @@ export default function Header() {
                         </div>
 
                         {/* Іконки */}
-                        <div className="hidden md:flex gap-5 text-black">
-                            <Link href="/wishlist" className="hover:text-gray-700">
-                                <Heart size={22} />
-                            </Link>
-                            <Link href="/cart" className="hover:text-gray-700">
-                                <ShoppingCart size={22} />
-                            </Link>
-                        </div>
+                        {showIcons && (
+                            <div className="hidden md:flex gap-5 text-black">
+                                <Link href="/wishlist" className="hover:text-gray-700">
+                                    <Heart size={22} />
+                                </Link>
+                                <Link href="/cart" className="hover:text-gray-700">
+                                    <ShoppingCart size={22} />
+                                </Link>
+                            </div>
+                        )}
 
                         {/* Бургер для мобільних */}
                         <div className="md:hidden text-gray-900">
@@ -76,38 +79,47 @@ export default function Header() {
                 </div>
 
                 {/* Мобільне меню */}
-                {menuOpen && (
-                    <div className="fixed top-0 right-0 h-full w-1/2 bg-white text-gray-900 shadow-lg z-50 flex flex-col p-3 gap-4
-                  transform transition-transform  duration-300 ease-linear">
-                        <button className="self-end mb-4" onClick={() => setMenuOpen(false)}>
-                            <X size={24} />
-                        </button>
+                <div
+                    className={`fixed inset-0 z-40 bg-black transition-opacity duration-300 
+                        ${menuOpen ? "opacity-40 pointer-events-auto" : "opacity-0 pointer-events-none"
+                        }`}
+                    onClick={() => setMenuOpen(false)}
+                ></div>
 
-                        {links.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={`text-gray-700 hover:text-gray-900 text-lg ${pathname === link.href ? "underline font-semibold" : ""}`}
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
+                <div
+                    className={`fixed top-0 right-0 h-full w-2/3 bg-white text-gray-900 shadow-lg z-50 flex flex-col p-3 gap-4
+                  transform transition-transform  duration-300 ease-in-out
+                   ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
+                >
+                    <button className="self-end mb-4" onClick={() => setMenuOpen(false)}>
+                        <X size={24} />
+                    </button>
 
-                        {/* Іконки */}
-                        <div className="flex gap-6 mt-6">
-                            <Link href="/wishlist" className="hover:text-gray-700">
-                                <Heart size={22} />
-                            </Link>
-                            <Link href="/cart" className="hover:text-gray-700">
-                                <ShoppingCart size={22} />
-                            </Link>
-                        </div>
+                    {links.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={`text-gray-700 hover:text-gray-900  w-max text-lg ${pathname === link.href ? "underline font-semibold" : ""}`}
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+
+                    {/* Іконки */}
+                    {showIcons && (
+                    <div className="flex gap-6 mt-6">
+                        <Link href="/wishlist" className="hover:text-gray-700">
+                            <Heart size={22} />
+                        </Link>
+                        <Link href="/cart" className="hover:text-gray-700">
+                            <ShoppingCart size={22} />
+                        </Link>
                     </div>
-                )}
-
-
+                    )}
+                </div>
             </div>
+
         </header>
     );
 }
