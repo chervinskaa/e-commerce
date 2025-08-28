@@ -1,9 +1,13 @@
-// app/about/page.jsx
+import OurStory from "@/components/About/OurStory";
+import Advantages from "@/components/About/Advantages";
+import Stats from "@/components/About/Stats";
+
 export default function AboutPage() {
   return (
-    <div>
-      <h1>About Us</h1>
-      <p>Welcome to the About page.</p>
-    </div>
+    <main>
+      <OurStory />
+      <Stats />
+      <Advantages />
+    </main>
   );
 }
