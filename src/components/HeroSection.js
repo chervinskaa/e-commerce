@@ -36,7 +36,7 @@ export default function PromoSection() {
         </div>
 
         {/* Карусель */}
-        <div className="w-11/12 mx-auto pt-8 md:w-3/4">
+        <div className="w-11/12 mx-auto pt-8 md:w-3/4 overflow-visible group">
           <Swiper
             modules={[Navigation, Autoplay]}
             navigation

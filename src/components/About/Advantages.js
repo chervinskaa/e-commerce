@@ -20,7 +20,7 @@ export default function OurAdvantages() {
   ];
 
   return (
-    <section className="bg-white py-12">
+    <section className="bg-white py-40">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 justify-center md:justify-between items-center px-6">
         {advantages.map((adv, index) => (
           <div key={index} className="flex flex-col items-center text-center md:text-left md:w-1/3">

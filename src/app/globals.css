@@ -2,5 +2,21 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: #c5c3cc; 
+  opacity: 0;
+  transition: opacity 0.3s;
+  
 }
+
+.group:hover .swiper-button-next,
+.group:hover .swiper-button-prev {
+  opacity: 1;
+color: #8b8b8b;
+}
+
+.swiper-pagination {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .group:hover .swiper-pagination {
+      opacity: 1;
+    }
