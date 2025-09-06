@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
+import { useWishlist } from "@/context/WishlistContext";
 
-function LikeButton() {
-  const [liked, setLiked] = useState(false);
+function LikeButton({ product }) {
   const [hovered, setHovered] = useState(false);
+  const { wishlist, toggleWishlist } = useWishlist();
+
+  const liked = wishlist.some((item) => item.id === product.id);
 
   return (
     <button
-      onClick={() => setLiked(!liked)}
+       onClick={() => toggleWishlist(product)}
       className="absolute top-2 right-2 p-2 rounded-full bg-white shadow"
     >
       <Heart

@@ -40,12 +40,12 @@ function ProductList() {
       <div className="flex justify-between sm:mx-11 lg:mx-16 my-4 ">
         <h1 className="text-2xl font-bold  ml-6">Explore Our Products</h1>
         <div className="flex gap-2 mr-6">
-          <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
+          <div className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
             <ArrowButton direction="left" onClick={prevSlide} />
-          </button>
-          <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
+          </div>
+          <div className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
             <ArrowButton direction="right" onClick={nextSlide} />
-          </button>
+          </div>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ function ProductList() {
                   alt={p.title}
                   className="h-40 mx-auto object-contain mb-2"
                 />
-                <LikeButton />
+                <LikeButton product={p}/>
               </div>
 
               <div className="p-4 bg-white">

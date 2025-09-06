@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./globals.css";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 export const metadata = {
   title: "Exclusive",
@@ -11,9 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body >
-        <Header />
-        {children}
-        <Footer />
+        <WishlistProvider>
+          <Header />
+          {children}
+          <Footer />
+        </WishlistProvider>
       </body>
     </html>
   );
