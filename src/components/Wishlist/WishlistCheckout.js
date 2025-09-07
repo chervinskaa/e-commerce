@@ -9,7 +9,7 @@ export default function WishlistCheckout() {
     const router = useRouter();
 
     const totalPrice = wishlist.reduce(
-        (sum, product) => sum + product.price * (product.quantity || 1),
+        (sum, product) => sum + product.price * (product.quantity ?? 1),
         0
     );
 

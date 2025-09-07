@@ -28,16 +28,14 @@ export default function ProdactAdded({ product }) {
                     <input
                         type="number"
                         min={0}
-                        value={product.quantity || 0} 
-                        onChange={(e) =>
-                            updateQuantity(product.id, Math.max(0, Number(e.target.value)))
-                        }
+                        value={product.quantity?? 1 } 
+                         onChange={(e) =>    updateQuantity(product.id,  Number(e.target.value))}
                         className="w-16 text-center border rounded px-2 py-1"
                     />
                 </div>
 
                 <div className="flex items-center justify-center gap-2 font-medium">
-                    {product.price * (product.quantity || 1)}  $
+                    {product.price * (product.quantity?? 1)}  $
                 </div>
             </div>
 
@@ -60,12 +58,12 @@ export default function ProdactAdded({ product }) {
                     <input
                         type="number"
                         min={0}
-                        value={product.quantity?? 0}
+                        value={product.quantity } 
                         onChange={(e) =>    updateQuantity(product.id,  Number(e.target.value))}
                         className="w-16 text-center border rounded px-2 py-1"
                     />
 
-                    <span className="font-medium">{product.price * (product.quantity || 1)}  $</span>
+                    <span className="font-medium">{product.price * (product.quantity )}  $</span>
                 </div>
             </div>
         </div>

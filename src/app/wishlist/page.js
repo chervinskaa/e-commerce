@@ -4,13 +4,25 @@ import { useWishlist } from "@/context/WishlistContext";
 import ProdactAdded from "@/components/Wishlist/ProdactAdded";
 import WishlistHeader from "@/components/Wishlist/WishlistHeader";
 import WishlistCheckout from "@/components/Wishlist/WishlistCheckout";
+import { useRouter } from "next/navigation"; 
 
 export default function WishlistPage() {
   const { wishlist, toggleWishlist } = useWishlist();
 
-  if (wishlist.length === 0) {
-    return <div className="p-6 text-center">Your wishlist is empty</div>;
-  }
+if (wishlist.length === 0) {
+  const router = useRouter();
+  return (
+    <div className="h-screen flex flex-col justify-center items-center space-y-5">
+      <div className="text-xl font-semibold">Your wishlist is empty</div>
+      <button
+        onClick={() => router.push("/")}
+        className="px-6 py-3 bg-white border rounded hover:bg-gray-100"
+      >
+        Return to Shop
+      </button>
+    </div>
+  );
+}
 
   return (
     <div className="px-6 py-8 space-y-4">
@@ -21,13 +33,13 @@ export default function WishlistPage() {
           <ProdactAdded
             key={product.id}
             product={product}
-            removeFromWishlist={toggleWishlist} 
+            removeFromWishlist={toggleWishlist}
           />
         ))}
 
-        
-      <WishlistCheckout />
-      
+
+        <WishlistCheckout />
+
 
       </div>
     </div>

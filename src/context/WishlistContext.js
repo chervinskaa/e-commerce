@@ -9,8 +9,13 @@ export function WishlistProvider({ children }) {
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlist(saved);
+    const withQuantity = saved.map(item => ({
+      ...item,
+      quantity: item.quantity ?? 1,
+    }));
+    setWishlist(withQuantity);
   }, []);
+
 
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
@@ -20,19 +25,19 @@ export function WishlistProvider({ children }) {
     setWishlist((prev) =>
       prev.some((item) => item.id === product.id)
         ? prev.filter((item) => item.id !== product.id)
-        : [...prev, product]
+        : [...prev, { ...product, quantity: product.quantity ?? 1 }]
     );
   };
 
   const updateQuantity = (id, quantity) => {
-  setWishlist(prev =>
-    prev.map(item => item.id === id ? { ...item, quantity } : item)
-  );
-};
+    setWishlist(prev =>
+      prev.map(item => item.id === id ? { ...item, quantity } : item)
+    );
+  };
 
 
   return (
-    <WishlistContext.Provider value={{ wishlist, toggleWishlist ,updateQuantity}}>
+    <WishlistContext.Provider value={{ wishlist, toggleWishlist, updateQuantity }}>
       {children}
     </WishlistContext.Provider>
   );
